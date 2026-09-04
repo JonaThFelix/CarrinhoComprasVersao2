@@ -380,12 +380,21 @@ function App() {
                       <input type="text" value={editNome} onChange={(e) => setEditNome(e.target.value)}
                         onKeyDown={(e) => handleKeyDownEdicao(e, item.id)} className={`${inputClasse} mb-2`} />
                       <div className="flex gap-3 mb-3">
-                        <input type="number" inputMode="decimal" step="any" min="0" value={editQtd}
-                          onChange={(e) => setEditQtd(e.target.value)} onKeyDown={(e) => handleKeyDownEdicao(e, item.id)}
-                          placeholder="Qtd" className={`${inputClasse} ld-num w-20`} />
-                        <input type="number" inputMode="decimal" step="0.01" min="0" value={editValor}
-                          onChange={(e) => setEditValor(e.target.value)} onKeyDown={(e) => handleKeyDownEdicao(e, item.id)}
-                          placeholder="Valor" className={`${inputClasse} ld-num flex-1`} />
+                        <div className="w-20">
+                          <label className="text-xs text-stone-400">Quantidade</label>
+                          <input type="number" inputMode="decimal" step="any" min="0" value={editQtd}
+                            onChange={(e) => setEditQtd(e.target.value)} onKeyDown={(e) => handleKeyDownEdicao(e, item.id)}
+                            className={`${inputClasse} ld-num`} />
+                        </div>
+                        <div className="flex-1">
+                          <label className="text-xs text-stone-400">Valor unitário</label>
+                          <div className="flex items-baseline gap-1 border-b-2 border-stone-300 focus-within:border-orange-500 py-2 transition-colors">
+                            <span className="text-stone-400 ld-num text-sm">R$</span>
+                            <input type="number" inputMode="decimal" step="0.01" min="0" value={editValor}
+                              onChange={(e) => setEditValor(e.target.value)} onKeyDown={(e) => handleKeyDownEdicao(e, item.id)}
+                              className="flex-1 min-w-0 bg-transparent outline-none ld-num placeholder-stone-400" />
+                          </div>
+                        </div>
                       </div>
                       <div className="flex gap-2">
                         <button onClick={() => salvarEdicao(item.id)} disabled={!edicaoValida}
